@@ -10,13 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace Td1.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProfilPage : ContentPage
+	public partial class ChangerMdp : ContentPage
 	{
-		public ProfilPage ()
+		public ChangerMdp ()
 		{
 			InitializeComponent ();
-            BindingContext = new ProfilViewModel();
-
-        }
+            BindingContext = new ChangerMdpViewModel();
+		}
 	}
 }

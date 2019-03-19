@@ -14,7 +14,10 @@ namespace Td1
         {
             InitializeComponent();
             BindingContext = new MainPageViewModel();
+
+           
+
         }
-        
+
     }
 }

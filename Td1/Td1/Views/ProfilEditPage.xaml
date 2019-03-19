@@ -4,9 +4,10 @@
              x:Class="Td1.Views.ProfilEditPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Resumé"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding Resume}"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

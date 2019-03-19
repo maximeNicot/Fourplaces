@@ -1,21 +1,24 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Td1.Views.InscriptionView">
-  <ContentView.Content>
-      
-      <StackLayout>
-            <Label Text="Pseudo"
+             x:Class="Td1.Views.InscriptionPage">
+    <ContentPage.Content>
+       
+            <StackLayout>
+                <Label Text="Pseudo"
                HorizontalOptions="Center"/>
-            <Entry Text="{Binding Pseudo}"/>
-            <Label Text="Mot de passe"
+                <Entry Text="{Binding Pseudo}"/>
+                
+                <Label Text="Mot de passe"
                HorizontalOptions="Center"/>
-            <Entry Text="{Binding Mdp}" IsPassword="True"/>
-            <Label Text="Adresse mail"
+                <Entry Text="{Binding Mdp}" IsPassword="True"/>
+                
+                <Label Text="Adresse mail"
                HorizontalOptions="Center"/>
-            <Entry Text="{Binding Email}"/>
-          
-        </StackLayout>
-      
-  </ContentView.Content>
-</ContentView>
+                <Entry Text="{Binding Email}"/>
+
+                <Button Text="Inscription" Command="{Binding}"/>
+            </StackLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

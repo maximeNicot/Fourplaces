@@ -25,7 +25,7 @@
         
         
         <Button Text="Connexion"
-                Command="{Binding}"/>
+                Command="{Binding ConnexionCommand}"/>
 
 
 

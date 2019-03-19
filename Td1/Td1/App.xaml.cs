@@ -1,5 +1,7 @@
 ﻿using Storm.Mvvm.Services;
 using System;
+using System.Collections.Generic;
+using Storm.Mvvm;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,14 +13,14 @@ namespace Td1
         public App()
         {
             InitializeComponent();
-           
-
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
+           // MainPage = new MainPage();
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
+          
         }
 
         protected override void OnSleep()

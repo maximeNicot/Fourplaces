@@ -3,11 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Td1.Views.ProfilPage">
     <ContentPage.Content>
-        
+
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Pseudo"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding Pseudo}"/>
+            
+            <Label Text="Mot de passe"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding Mdp}" IsPassword="True"/>
+            
+            <Label HorizontalOptions="Center"
+               TextColor="Blue"
+               Text="Modifier le mot de passe">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangerMotDePasseCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            
+            <Label Text="Resumé"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding Resume}"/>
+            
+
+
+            <Button Text="Editer le profil"
+                Command="{Binding EditerProfilCommand}"/>
         </StackLayout>
         
     </ContentPage.Content>

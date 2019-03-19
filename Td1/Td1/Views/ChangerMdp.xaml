@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Td1.Views.ChangerMdp">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Ancien mot de passe"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding AncienMdp}"/>
+
+            <Label Text="Nouveau mot de passe"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding NouveauMdp}"/>
+
+            <Button Text="Confirmer" Command="{Binding ConfirmerChangerMdpCommand}"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

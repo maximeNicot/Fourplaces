@@ -11,14 +11,12 @@ namespace Td1.ViewModels
 {
 	public class MainPageViewModel : ViewModelBase
 	{
-        /*
-        Dictionary<string, Page> dictionnaire = new Dictionary<string, Page>();
-        */
-        
+
         private string _pseudo;
         private string _mdp;
         public Command PasEncoreInscritCommand { get; }
-
+        public Command ConnexionCommand { get; }
+        
 
         public string Pseudo
         {
@@ -34,17 +32,24 @@ namespace Td1.ViewModels
 
         public void LaunchInscriptionView()
         {
-            Pseudo = "La Pwetass";
-           
-            NavigationService.PushAsync<Page1>();
+            Pseudo = "La Pwetass"; 
         }
+
         public MainPageViewModel ()
 		{
-           /* NavigationService.PushAsync(new Page1());
-         */
-            PasEncoreInscritCommand = new Command(LaunchInscriptionView);
+            //PasEncoreInscritCommand = new Command(LaunchInscriptionView);
             Pseudo = "";
             Mdp = "";
+
+            PasEncoreInscritCommand = new Command(async () => {
+
+                await Application.Current.MainPage.Navigation.PushAsync(new InscriptionPage());
+            });
+
+            ConnexionCommand = new Command(async () => {
+
+                await Application.Current.MainPage.Navigation.PushAsync(new ProfilPage());
+            });
         }
 	}
 }

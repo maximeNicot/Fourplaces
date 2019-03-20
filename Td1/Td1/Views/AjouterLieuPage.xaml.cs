@@ -10,14 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace Td1.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ListeLieuxPage : ContentPage
+	public partial class AjouterLieuPage : ContentPage
 	{
-		public ListeLieuxPage ()
+		public AjouterLieuPage ()
 		{
 			InitializeComponent ();
-            BindingContext = new ListeLieuxViewModel();
-
-             
+            BindingContext = new AjouterLieuViewModel();
 		}
 	}
 }

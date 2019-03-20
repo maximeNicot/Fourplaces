@@ -32,7 +32,7 @@ namespace Td1.ViewModels
 
         public void LaunchInscriptionView()
         {
-            Pseudo = "La Pwetass"; 
+            Pseudo = "Changement de nom test"; 
         }
 
         public MainPageViewModel ()
@@ -48,7 +48,7 @@ namespace Td1.ViewModels
 
             ConnexionCommand = new Command(async () => {
 
-                await Application.Current.MainPage.Navigation.PushAsync(new ProfilPage());
+                await Application.Current.MainPage.Navigation.PushAsync(new ListeLieuxPage());
             });
         }
 	}

@@ -4,9 +4,19 @@
              x:Class="Td1.Views.ListeLieuxPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <ListView ItemsSource="{Binding ListeLieux}" SelectedItem="{Binding SelectedLieu}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell ImageSource="{Binding ImageLieu}"
+                                   Text="{Binding NomLieu}"
+                                   Detail="{Binding DetailLieu}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Voir mon profil" Command="{Binding ProfilPageCommand}"/>
+            <Button Text="Ajouter un lieu" Command="{Binding AjouterUnLieuCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

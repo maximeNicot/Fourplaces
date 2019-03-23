@@ -5,19 +5,25 @@
     <ContentPage.Content>
        
             <StackLayout>
-                <Label Text="Pseudo"
+            <Label Text="Adresse mail"
                HorizontalOptions="Center"/>
-                <Entry Text="{Binding Pseudo}"/>
+            <Entry Text="{Binding Email}"/>
+
+            <Label Text="First name"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding FirstName}"/>
                 
-                <Label Text="Mot de passe"
+            <Label Text="Last name"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding LastName}"/>
+                
+            <Label Text="Mot de passe"
                HorizontalOptions="Center"/>
                 <Entry Text="{Binding Mdp}" IsPassword="True"/>
                 
-                <Label Text="Adresse mail"
-               HorizontalOptions="Center"/>
-                <Entry Text="{Binding Email}"/>
+               
 
-                <Button Text="Inscription" Command="{Binding}"/>
+                <Button Text="Inscription" Command="{Binding EffectuerInscriptionCommand}"/>
             </StackLayout>
        
     </ContentPage.Content>

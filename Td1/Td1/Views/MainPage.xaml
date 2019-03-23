@@ -7,9 +7,9 @@
     <StackLayout>
         <!-- Place new controls here -->
 
-        <Label Text="Pseudo"
+        <Label Text="Email "
                HorizontalOptions="Center"/>
-        <Entry Text="{Binding Pseudo}"/>
+        <Entry Text="{Binding Email}"/>
         <Label Text="Mot de passe"
                HorizontalOptions="Center"/>
         <Entry Text="{Binding Mdp}" IsPassword="True"/>

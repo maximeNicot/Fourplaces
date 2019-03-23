@@ -5,23 +5,25 @@ using System.Text;
 using Storm.Mvvm;
 using Storm.Mvvm.Services;
 using Td1.Views;
+using Td1.Data;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace Td1.ViewModels
 {
 	public class MainPageViewModel : ViewModelBase
 	{
 
-        private string _pseudo;
+        private string _email;
         private string _mdp;
         public Command PasEncoreInscritCommand { get; }
         public Command ConnexionCommand { get; }
         
 
-        public string Pseudo
+        public string Email
         {
-            get => _pseudo;
-            set => SetProperty(ref _pseudo, value);
+            get => _email;
+            set => SetProperty(ref _email, value);
         }
 
         public string Mdp
@@ -30,15 +32,19 @@ namespace Td1.ViewModels
             set => SetProperty(ref _mdp, value);
         }
 
-        public void LaunchInscriptionView()
+       public async Task LoginAPI()
         {
-            Pseudo = "Changement de nom test"; 
+           bool res = await App.restService.Login(Email, Mdp);
+           if(res)
+                Console.WriteLine(" Login reussi");
+           else
+                Console.WriteLine(" Login rate");
         }
 
         public MainPageViewModel ()
 		{
-            //PasEncoreInscritCommand = new Command(LaunchInscriptionView);
-            Pseudo = "";
+           
+            Email = "";
             Mdp = "";
 
             PasEncoreInscritCommand = new Command(async () => {
@@ -48,7 +54,9 @@ namespace Td1.ViewModels
 
             ConnexionCommand = new Command(async () => {
 
+                await LoginAPI();
                 await Application.Current.MainPage.Navigation.PushAsync(new ListeLieuxPage());
+                
             });
         }
 	}

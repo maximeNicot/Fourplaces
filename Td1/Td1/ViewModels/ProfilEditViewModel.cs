@@ -20,6 +20,7 @@ namespace Td1.ViewModels
 
         public ProfilEditViewModel ()
 		{
+            
             Resume = "";
 		}
 	}

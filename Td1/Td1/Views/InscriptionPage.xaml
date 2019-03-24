@@ -5,7 +5,7 @@
     <ContentPage.Content>
        
             <StackLayout>
-            <Label Text="Adresse mail"
+            <Label Text="Email"
                HorizontalOptions="Center"/>
             <Entry Text="{Binding Email}"/>
 

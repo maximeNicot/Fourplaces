@@ -9,5 +9,11 @@ namespace TD.Api.Dtos
         
         [JsonProperty("new_password")]
         public string NewPassword { get; set; }
+
+        public UpdatePasswordRequest(string oldMdp, string mdp)
+        {
+            OldPassword = oldMdp;
+            NewPassword = mdp;
+        }
     }
 }

@@ -4,14 +4,30 @@
              x:Class="Td1.Views.ListeLieuxPage">
     <ContentPage.Content>
         <StackLayout>
+            <Image Source="{Binding ImageUrl}"/>
+
 
             <ListView ItemsSource="{Binding ListeLieux}" SelectedItem="{Binding SelectedLieu}">
-
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ImageCell ImageSource="{Binding ImageLieu}"
-                                   Text="{Binding NomLieu}"
-                                   Detail="{Binding DetailLieu}"/>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                             Grid.Column="0"
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="Center"
+                                             >
+
+                                <Image Source="{Binding ImageUrl}"/>
+                                
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Title }"  FontSize="15" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Description }" MaxLines="1"/>
+                                </StackLayout>
+
+                            </StackLayout>
+                            
+                        </ViewCell>
+                       
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

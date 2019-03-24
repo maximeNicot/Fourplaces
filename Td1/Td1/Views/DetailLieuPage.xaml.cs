@@ -12,10 +12,10 @@ namespace Td1.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetailLieuPage : ContentPage
 	{
-		public DetailLieuPage ()
+		public DetailLieuPage (int idLieu)
 		{
 			InitializeComponent ();
-            BindingContext = new DetailLieuViewModel();
+            BindingContext = new DetailLieuViewModel(idLieu);
 		}
 	}
 }

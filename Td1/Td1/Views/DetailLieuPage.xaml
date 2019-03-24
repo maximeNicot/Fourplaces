@@ -7,7 +7,7 @@
             <Label Text="{Binding NomLieu}"
                HorizontalOptions="Center"/>
 
-            <Label Text="{Binding DetailLieu}"
+            <Label Text="{Binding DescriptionLieu}"
                HorizontalOptions="Center"/>
 
             <Image Source="{Binding ImageLieu}" />

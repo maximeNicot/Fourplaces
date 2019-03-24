@@ -1,8 +1,11 @@
-﻿using Storm.Mvvm;
+﻿using MonkeyCache.SQLite;
+using Storm.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using TD.Api.Dtos;
 using Td1.Views;
 using Xamarin.Forms;
 
@@ -11,34 +14,47 @@ namespace Td1.ViewModels
 
     public class ProfilViewModel : ViewModelBase
     {
-        private string _pseudo;
+        private string _email;
         private string _mdp;
-        private string _resume;
+        private string _firstName;
+        private string _lastName;
         public Command ChangerMotDePasseCommand { get; }
         public Command EditerProfilCommand { get; }
 
-        public string Pseudo
+        public string FirstName
         {
-            get => _pseudo;
-            set => SetProperty(ref _pseudo, value);
+            get => _firstName;
+            set => SetProperty(ref _firstName, value);
         }
+
+        public string Email
+        {
+            get => _email;
+            set => SetProperty(ref _email, value);
+        }
+
+        public string LastName
+        {
+            get => _lastName;
+            set => SetProperty(ref _lastName, value);
+        }
+
         public string Mdp
         {
             get => _mdp;
             set => SetProperty(ref _mdp, value);
         }
 
-        public string Resume
-        {
-            get => _resume;
-            set => SetProperty(ref _resume, value);
-        }
+       
 
         public ProfilViewModel()
         {
-            Pseudo = "";
-            Resume = "";
+            UserItem me = Barrel.Current.Get<UserItem>("Me");
+            Email = me.Email;
+            FirstName = me.FirstName;
+            LastName = me.LastName;
             Mdp = "";
+
 
             ChangerMotDePasseCommand = new Command(async () => {
 

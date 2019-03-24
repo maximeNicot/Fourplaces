@@ -5,6 +5,7 @@ using Storm.Mvvm;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Td1.Data;
+using MonkeyCache.SQLite;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Td1
@@ -21,8 +22,9 @@ namespace Td1
             MainPage = new NavigationPage(new MainPage());
 
             restService = new RestService();
+            Barrel.ApplicationId = "fourPlacesBarrel";
 
-           // MainPage = new MainPage();
+            // MainPage = new MainPage();
         }
 
         protected override void OnStart()

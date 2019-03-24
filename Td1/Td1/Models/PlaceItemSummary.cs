@@ -21,5 +21,9 @@ namespace TD.Api.Dtos
 		
 		[JsonProperty("longitude")]
 		public double Longitude { get; set; }
-	}
+
+        public string ImageUrl { get; set; }
+    }
+
+    
 }

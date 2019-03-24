@@ -4,9 +4,15 @@
              x:Class="Td1.Views.ProfilEditPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Resumé"
+            <Label Text="First name"
                HorizontalOptions="Center"/>
-            <Entry Text="{Binding Resume}"/>
+            <Entry Text="{Binding FirstName}"/>
+
+            <Label Text="Last name"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding LastName}"/>
+
+            <Button Text="Valider les modifications" Command="{Binding ValiderModificationCommand}"/>
             
         </StackLayout>
     </ContentPage.Content>

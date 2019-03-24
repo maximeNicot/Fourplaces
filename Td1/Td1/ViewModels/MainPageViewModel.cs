@@ -41,6 +41,11 @@ namespace Td1.ViewModels
                 Console.WriteLine(" Login rate");
         }
 
+        public async Task GetPlacesAPI()
+        {
+            bool res = await App.restService.GetPlaces();
+        }
+
         public MainPageViewModel ()
 		{
            
@@ -55,6 +60,7 @@ namespace Td1.ViewModels
             ConnexionCommand = new Command(async () => {
 
                 await LoginAPI();
+                await GetPlacesAPI();
                 await Application.Current.MainPage.Navigation.PushAsync(new ListeLieuxPage());
                 
             });

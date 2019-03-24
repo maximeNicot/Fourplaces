@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Td1.ViewModels
@@ -26,11 +26,22 @@ namespace Td1.ViewModels
             set => SetProperty(ref _nouveauMdp, value);
         }
 
+        public async Task ChangerMdpAPI()
+        {
+            bool res = await App.restService.ModificationMdp(AncienMdp, NouveauMdp);
+        }
+
 
         public ChangerMdpViewModel ()
 		{
             AncienMdp = "";
             NouveauMdp = "";
-		}
+
+            ConfirmerChangerMdpCommand = new Command(async () => {
+
+                await ChangerMdpAPI();
+            });
+
+        }
 	}
 }

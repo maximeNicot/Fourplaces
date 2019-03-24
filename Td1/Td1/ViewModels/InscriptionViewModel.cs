@@ -45,7 +45,7 @@ namespace Td1.ViewModels
         {
 
             bool res = await App.restService.Register(Email, FirstName,LastName,Mdp);
-            // bool res = await App.restService.Login("maximenicot@outlook.com", "maxime");
+            
             if(res)
                 Console.WriteLine(" Enregistrement reussi");
 

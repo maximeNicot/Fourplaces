@@ -6,5 +6,12 @@ namespace TD.Api.Dtos
 	{
 		[JsonProperty("text")]
 		public string Text { get; set; }
-	}
+
+        public CreateCommentRequest(string text)
+        {
+            Text = text;
+        }
+
+    }
+
 }

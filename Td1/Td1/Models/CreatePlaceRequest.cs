@@ -18,5 +18,14 @@ namespace TD.Api.Dtos
 		
 		[JsonProperty("longitude")]
 		public double Longitude { get; set; }
-	}
+
+        public CreatePlaceRequest(string title, string description, int imageId, double latitude, double longitude)
+        {
+            Title = title;
+            Description = description;
+            ImageId = imageId;
+            Latitude = latitude;
+            Longitude = longitude;
+        }
+    }
 }

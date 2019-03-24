@@ -61,8 +61,6 @@ namespace Td1.ViewModels
 
             EffectuerInscriptionCommand = new Command(async () => {
                 await RegisterAPI();
-
-
             });
         }
 	}

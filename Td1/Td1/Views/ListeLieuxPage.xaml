@@ -4,7 +4,7 @@
              x:Class="Td1.Views.ListeLieuxPage">
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="{Binding ImageUrl}"/>
+          
 
 
             <ListView ItemsSource="{Binding ListeLieux}" SelectedItem="{Binding SelectedLieu}">
@@ -17,8 +17,10 @@
                                              VerticalOptions="Center"
                                              >
 
-                                <Image Source="{Binding ImageUrl}"/>
-                                
+                                <Image Source="{Binding ImageUrl}" 
+                                       HeightRequest="100"
+                                       WidthRequest="100"/>
+
                                 <StackLayout Orientation="Vertical">
                                     <Label Text="{Binding Title }"  FontSize="15" FontAttributes="Bold"/>
                                     <Label Text="{Binding Description }" MaxLines="1"/>

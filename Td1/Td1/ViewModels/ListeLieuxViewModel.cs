@@ -62,11 +62,6 @@ namespace Td1.ViewModels
         {
             bool res = await App.restService.GetPlacesId(idLieu);
         }
-        /*public async Task GetImagesAPI(int idImage)
-        {
-            bool res = await App.restService.GetImages(idImage);
-
-        }*/
 
         public ListeLieuxViewModel()
         {

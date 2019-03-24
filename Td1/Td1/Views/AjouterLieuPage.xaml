@@ -6,16 +6,27 @@
         <StackLayout>
             <Label Text="Nom du lieu"
                HorizontalOptions="Center"/>
-            <Entry Text="{Binding NomLieu}"/>
+            <Entry Text="{Binding Title}"/>
 
             <Label Text="Description du lieu"
                HorizontalOptions="Center"/>
-            <Entry Text="{Binding DetailLieu}"/>
+            <Entry Text="{Binding Description}"/>
 
-            <Label Text="Image du lieu"
+            <Label Text="Id de l'image du lieu (a faire depuis la galerie/appareil photo)"
                HorizontalOptions="Center"/>
+            <Entry Text="{Binding IdImage}"/>
 
-            <Button Text="Ajouter le lieu " Command=""/>
+            <Label Text="Latitude"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding Latitude}"/>
+
+            <Label Text="Longitude"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding Longitude}"/>
+
+
+
+            <Button Text="Ajouter le lieu " Command="{Binding AjouterLieuCommand}"/>
             
         </StackLayout>
     </ContentPage.Content>

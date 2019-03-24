@@ -292,6 +292,65 @@ namespace Td1.Data
             }
         }
 
+        public async Task<bool> NouveauCommentaire(string commentaire, int idLieu)
+        {
+            try
+            {
+                client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
+                var uri = new Uri(string.Format("https://td-api.julienmialon.com/places/" + idLieu + "/comments", string.Empty));
+                CreateCommentRequest createCommentRequest = new CreateCommentRequest(commentaire);
+                string data = JsonConvert.SerializeObject(createCommentRequest);
+                var contentRequest = new StringContent(data, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(uri, contentRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Post commentaire REUSSI");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Post commentaire RATEE" + " " + response.StatusCode + "  " + response.RequestMessage + "  " + response.ReasonPhrase);
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(@"		ERROR {0}", e.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> NouveauLieu(string title, string description, int imageId, double Latitude, double longitude)
+        {
+            try
+            {
+                client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
+                var uri = new Uri(string.Format("https://td-api.julienmialon.com/places", string.Empty));
+                CreatePlaceRequest createPlaceRequest = new CreatePlaceRequest(title, description, imageId, Latitude, longitude);
+                string data = JsonConvert.SerializeObject(createPlaceRequest);
+                var contentRequest = new StringContent(data, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(uri, contentRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Post Lieu REUSSI");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Post Lieu RATEE" + " " + response.StatusCode + "  " + response.RequestMessage + "  " + response.ReasonPhrase);
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(@"		ERROR {0}", e.Message);
+                return false;
+            }
+        }
         /*public async Task<bool> GetImages(int idImage)
         {
             try

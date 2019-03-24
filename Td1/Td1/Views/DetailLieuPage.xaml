@@ -10,9 +10,33 @@
             <Label Text="{Binding DescriptionLieu}"
                HorizontalOptions="Center"/>
 
-            <Image Source="{Binding ImageLieu}" />
-              
+            <Image Source="{Binding ImageLieu}"
+                    HeightRequest="200"
+                    WidthRequest="200"/>
+
+            <Label Text="Liste des commentaires " FontSize="15"/>
+            <ListView ItemsSource="{Binding ListeCommentaire}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Author }"/>
+                                <Label Text="{Binding Date }"/>
+                                <Label Text="{Binding Text }"/>
+                                
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label Text="Ecrire un commentaire : "/>
             
+            <Entry Text="{Binding NouveauCommentaireContenu}"/>
+
+            <Button Text="Valider commentaire" Command="{Binding NouveauCommentaireCommand}"/>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

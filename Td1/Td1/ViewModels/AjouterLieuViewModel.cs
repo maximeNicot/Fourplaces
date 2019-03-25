@@ -16,6 +16,7 @@ namespace Td1.ViewModels
         private string _latitude;
         private string _longitude;
         public Command AjouterLieuCommand { get; }
+        public Command AjouterImageCommand { get; }
 
         public string Title
         {
@@ -47,18 +48,23 @@ namespace Td1.ViewModels
             set => SetProperty(ref _longitude, value);
         }
 
-        public async Task NouveauLieuAPI(string title, string description, string idImage, string latitude, string longitude)
-        {
-            bool res = await App.restService.NouveauLieu(title, description, Int32.Parse(idImage), Double.Parse(latitude), Double.Parse(longitude));
-        }
-
         public AjouterLieuViewModel ()
 		{
 
             AjouterLieuCommand = new Command(async () => {
-                await NouveauLieuAPI(Title, Description, IdImage, Latitude, Longitude);
+                if (await App.restService.NouveauLieu(Title, Description, Int32.Parse(IdImage), Double.Parse(Latitude), Double.Parse(Longitude)))
+                {
+                    await App.restService.GetPlaces();
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+            });
 
-
+            AjouterImageCommand = new Command(async () => {
+               if (await App.restService.NouvelleImage())
+                {
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                
             });
         }
 	}

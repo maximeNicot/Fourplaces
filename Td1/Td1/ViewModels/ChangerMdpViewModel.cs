@@ -26,11 +26,6 @@ namespace Td1.ViewModels
             set => SetProperty(ref _nouveauMdp, value);
         }
 
-        public async Task ChangerMdpAPI()
-        {
-            bool res = await App.restService.ModificationMdp(AncienMdp, NouveauMdp);
-        }
-
 
         public ChangerMdpViewModel ()
 		{
@@ -39,7 +34,11 @@ namespace Td1.ViewModels
 
             ConfirmerChangerMdpCommand = new Command(async () => {
 
-                await ChangerMdpAPI();
+                if (await App.restService.ModificationMdp(AncienMdp, NouveauMdp))
+                {
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                
             });
 
         }

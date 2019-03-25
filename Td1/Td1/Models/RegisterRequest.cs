@@ -4,9 +4,9 @@ namespace TD.Api.Dtos
 {
 	public class RegisterRequest
 	{
-        private string mail;
+        /*private string mail;
         private string fisrtName;
-        private string mdp;
+        private string mdp;*/
 
         public RegisterRequest(string mail, string fisrtName, string lastName, string mdp)
         {

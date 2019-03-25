@@ -4,8 +4,8 @@ namespace TD.Api.Dtos
 {
     public class LoginRequest
     {
-        private string mail;
-        private string mdp;
+        /*private string mail;
+        private string mdp;*/
 
         public LoginRequest(string mail, string mdp)
         {

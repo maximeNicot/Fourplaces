@@ -46,21 +46,12 @@ namespace Td1.ViewModels
             set => SetProperty(ref _imageUrl, value);
         }
 
+
+
         public async void OnCliqueItem(int idLieu)
         {
-            await GetPlacesIdAPI(idLieu);
+            await App.restService.GetPlaceId(idLieu);
             await Application.Current.MainPage.Navigation.PushAsync(new DetailLieuPage(idLieu));
-        }
-
-        public async Task GetMeAPI()
-        {
-            bool res = await App.restService.GetMe();
-
-        }
-
-        public async Task GetPlacesIdAPI(int idLieu)
-        {
-            bool res = await App.restService.GetPlacesId(idLieu);
         }
 
         public ListeLieuxViewModel()
@@ -79,7 +70,7 @@ namespace Td1.ViewModels
             });
 
             ProfilPageCommand = new Command(async () => {
-                await GetMeAPI();
+                await App.restService.GetMe();
                 await Application.Current.MainPage.Navigation.PushAsync(new ProfilPage());
             });
         }

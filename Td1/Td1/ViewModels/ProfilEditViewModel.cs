@@ -34,16 +34,6 @@ namespace Td1.ViewModels
             set => SetProperty(ref _lastName, value);
         }
 
-        public async Task ModifierUserAPI()
-        {
-
-            bool res = await App.restService.ModificationUser(FirstName, LastName, ImageId);
-            
-            if (res)
-                Console.WriteLine(" Modification reussi");
-            else
-                Console.WriteLine(" Modification rate");
-        }
 
         public ProfilEditViewModel ()
 		{
@@ -53,7 +43,12 @@ namespace Td1.ViewModels
             ImageId = 0;
 
             ValiderModificationCommand = new Command(async () => {
-                await ModifierUserAPI();
+                if (await App.restService.ModificationUser(FirstName, LastName, ImageId))
+                {
+                    await App.restService.GetMe();
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                
             });
         }
 

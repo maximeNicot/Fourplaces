@@ -17,6 +17,7 @@ namespace Td1.ViewModels
         private string _imageLieu;
         private string _nouveauCommentaireAuteur;
         private string _nouveauCommentaireContenu;
+        
         public Command NouveauCommentaireCommand { get; }
         private List<CommentItem> _listeCommentaire;
 
@@ -57,11 +58,7 @@ namespace Td1.ViewModels
         }
 
 
-        public async Task NouveauCommentaireAPI(string commentaire, int idLieu)
-        {
-            bool res = await App.restService.NouveauCommentaire(commentaire, idLieu);
-        }
-
+  
 
         public DetailLieuViewModel (int idLieu)
 		{
@@ -72,16 +69,14 @@ namespace Td1.ViewModels
             ImageLieu = "https://td-api.julienmialon.com/images/" + placeItem.ImageId;
             ListeCommentaire = placeItem.Comments;
 
-            /*foreach (CommentItem commentItem in ListeCommentaire)
-            {
-              
-            }*/
-
             NouveauCommentaireAuteur = "";
             NouveauCommentaireContenu = "";
 
             NouveauCommentaireCommand = new Command(async () => {
-                await NouveauCommentaireAPI(NouveauCommentaireContenu, idLieu);
+                await App.restService.NouveauCommentaire(NouveauCommentaireContenu, idLieu);
+                await App.restService.GetPlaceId(idLieu);
+                PlaceItem placeItem2 = Barrel.Current.Get<PlaceItem>("Lieu" + idLieu);
+                ListeCommentaire = placeItem2.Comments;
             });
         }
 	}

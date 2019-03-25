@@ -27,6 +27,7 @@
 
 
             <Button Text="Ajouter le lieu " Command="{Binding AjouterLieuCommand}"/>
+            <Button Text="Ajouter Une Image " Command="{Binding AjouterImageCommand}"/>
             
         </StackLayout>
     </ContentPage.Content>

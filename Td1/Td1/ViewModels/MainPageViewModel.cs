@@ -32,19 +32,6 @@ namespace Td1.ViewModels
             set => SetProperty(ref _mdp, value);
         }
 
-       public async Task LoginAPI()
-        {
-           bool res = await App.restService.Login(Email, Mdp);
-           if(res)
-                Console.WriteLine(" Login reussi");
-           else
-                Console.WriteLine(" Login rate");
-        }
-
-        public async Task GetPlacesAPI()
-        {
-            bool res = await App.restService.GetPlaces();
-        }
 
         public MainPageViewModel ()
 		{
@@ -59,8 +46,8 @@ namespace Td1.ViewModels
 
             ConnexionCommand = new Command(async () => {
 
-                await LoginAPI();
-                await GetPlacesAPI();
+                await App.restService.Login(Email, Mdp);
+                await App.restService.GetPlaces();
                 await Application.Current.MainPage.Navigation.PushAsync(new ListeLieuxPage());
                 
             });

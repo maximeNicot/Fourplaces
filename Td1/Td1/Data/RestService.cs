@@ -76,6 +76,7 @@ namespace Td1.Data
                 var response = await client.PostAsync(uri, contentRequest);
                 if (response.IsSuccessStatusCode)
                 {
+                    Console.WriteLine("Login REUSSI" + "  " + response.StatusCode);
                     var res = await response.Content.ReadAsStringAsync();
                     Response<LoginResult> jsonRes = JsonConvert.DeserializeObject<Response<LoginResult>>(res);
                     Barrel.Current.Add("Login", jsonRes.Data, TimeSpan.FromDays(1));
@@ -83,6 +84,7 @@ namespace Td1.Data
                 }
                 else
                 {
+                    Console.WriteLine("Login RATEE" + "  " + response.StatusCode);
                     return false;
                 }
             }
@@ -108,7 +110,7 @@ namespace Td1.Data
                 var response = await client.PostAsync(uri, contentRequest);
                 if (response.IsSuccessStatusCode)
                 {
-                    //Console.WriteLine("Test API REUSSI" + "  " + response.StatusCode);
+                    Console.WriteLine("Test Register REUSSI" + "  " + response.StatusCode);
                     var res = await response.Content.ReadAsStringAsync();
                     Response<LoginResult> jsonRes = JsonConvert.DeserializeObject<Response<LoginResult>>(res);
                     Barrel.Current.Add("Login", jsonRes.Data, TimeSpan.FromDays(1));
@@ -116,7 +118,7 @@ namespace Td1.Data
                 }
                 else
                 {
-                    //Console.WriteLine("Test API RATEE" + " " + response.StatusCode +"  " + response.RequestMessage  + "  " + response.ReasonPhrase);
+                    Console.WriteLine("Test Register RATEE" + " " + response.StatusCode +"  " + response.RequestMessage  + "  " + response.ReasonPhrase);
                     return false;
                 }
             }
@@ -262,7 +264,7 @@ namespace Td1.Data
             }
         }
 
-        public async Task<bool> GetPlacesId(int idLieu)
+        public async Task<bool> GetPlaceId(int idLieu)
         {
             try
             {
@@ -351,6 +353,49 @@ namespace Td1.Data
                 return false;
             }
         }
+
+        public async Task<bool> NouvelleImage()
+        {
+            try
+            {
+                client = new HttpClient();
+                byte[] imageData = await client.GetByteArrayAsync("https://www.valeursactuelles.com/sites/default/files/styles/image_article/public/2018-11/Capture_5.PNG?itok=j08MwU2H.jpg");
+
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://td-api.julienmialon.com/images");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
+
+                MultipartFormDataContent requestContent = new MultipartFormDataContent();
+
+                var imageContent = new ByteArrayContent(imageData);
+                imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+
+                // Le deuxième paramètre doit absolument être "file" ici sinon ça ne fonctionnera pas
+                requestContent.Add(imageContent, "file", "file.jpg");
+
+                request.Content = requestContent;
+
+                HttpResponseMessage response = await client.SendAsync(request);
+
+                string result = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Image uploaded!");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Image not uploaded");
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(@"		ERROR {0}", e.Message);
+                return false;
+            }
+        }
+
         /*public async Task<bool> GetImages(int idImage)
         {
             try

@@ -41,16 +41,6 @@ namespace Td1.ViewModels
             set => SetProperty(ref _email, value);
         }
 
-        public async Task RegisterAPI()
-        {
-
-            bool res = await App.restService.Register(Email, FirstName,LastName,Mdp);
-            
-            if(res)
-                Console.WriteLine(" Enregistrement reussi");
-
-        }
-
 
         public InscriptionViewModel ()
 		{
@@ -60,7 +50,17 @@ namespace Td1.ViewModels
             Email = "";
 
             EffectuerInscriptionCommand = new Command(async () => {
-                await RegisterAPI();
+                if (await App.restService.Register(Email, FirstName, LastName, Mdp))
+                {
+                    Console.WriteLine("L'enregistrement a reussi");
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+                    Console.WriteLine("L'enregistrement a echoué");
+                    Email = "Erreur";
+                }
+                    
             });
         }
 	}

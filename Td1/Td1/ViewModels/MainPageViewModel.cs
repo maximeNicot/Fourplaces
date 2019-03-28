@@ -8,6 +8,7 @@ using Td1.Views;
 using Td1.Data;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace Td1.ViewModels
 {
@@ -46,6 +47,7 @@ namespace Td1.ViewModels
 
             ConnexionCommand = new Command(async () => {
 
+                
                 await App.restService.Login(Email, Mdp);
                 await App.restService.GetPlaces();
                 await Application.Current.MainPage.Navigation.PushAsync(new ListeLieuxPage());

@@ -2,8 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Td1.Views.DetailLieuPage">
+
+
+
+    <ContentView  Content="{Binding Map}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+
+
     <ContentPage.Content>
-        <StackLayout>
+
+        <StackLayout >
+
+
             <Label Text="{Binding NomLieu}"
                HorizontalOptions="Center"/>
 
@@ -14,6 +23,12 @@
                     HeightRequest="200"
                     WidthRequest="200"/>
 
+
+
+            <!-- <ContentView  Content="{Binding Map}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />-->
+          
+
+            
             <Label Text="Liste des commentaires " FontSize="15"/>
             <ListView ItemsSource="{Binding ListeCommentaire}">
                 <ListView.ItemTemplate>
@@ -23,7 +38,7 @@
                                 <Label Text="{Binding Author }"/>
                                 <Label Text="{Binding Date }"/>
                                 <Label Text="{Binding Text }"/>
-                                
+
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -31,7 +46,7 @@
             </ListView>
 
             <Label Text="Ecrire un commentaire : "/>
-            
+
             <Entry Text="{Binding NouveauCommentaireContenu}"/>
 
             <Button Text="Valider commentaire" Command="{Binding NouveauCommentaireCommand}"/>
@@ -39,4 +54,5 @@
 
         </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>

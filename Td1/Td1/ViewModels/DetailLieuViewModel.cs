@@ -1,4 +1,5 @@
 ﻿using MonkeyCache.SQLite;
+using Plugin.Geolocator;
 using Storm.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TD.Api.Dtos;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace Td1.ViewModels
 {
@@ -17,10 +19,24 @@ namespace Td1.ViewModels
         private string _imageLieu;
         private string _nouveauCommentaireAuteur;
         private string _nouveauCommentaireContenu;
-        
+        private Map _map;
+        private Plugin.Geolocator.Abstractions.Position _maPosition;
+
         public Command NouveauCommentaireCommand { get; }
         private List<CommentItem> _listeCommentaire;
 
+
+        public Plugin.Geolocator.Abstractions.Position MaPosition
+        {
+            get => _maPosition;
+            set => SetProperty(ref _maPosition, value);
+        }
+
+        public Map Map
+        {
+            get => _map;
+            set => SetProperty(ref _map, value);
+        }
 
         public List<CommentItem> ListeCommentaire
         {
@@ -58,7 +74,13 @@ namespace Td1.ViewModels
         }
 
 
-  
+        public async void GetLocation()
+        {
+            var locator = CrossGeolocator.Current;
+            MaPosition =  await locator.GetPositionAsync();
+           
+        }
+       
 
         public DetailLieuViewModel (int idLieu)
 		{
@@ -69,15 +91,33 @@ namespace Td1.ViewModels
             ImageLieu = "https://td-api.julienmialon.com/images/" + placeItem.ImageId;
             ListeCommentaire = placeItem.Comments;
 
+            
+           
+
+            Map = new Map();
+            Position positionLieu = new Position(placeItem.Latitude, placeItem.Longitude);
+            var pin = new Pin()
+            {
+                Position = positionLieu,
+                Label = placeItem.Title
+            };
+            
+            Map.Pins.Add(pin);
+            /*GetLocation();
+            Position positionForm = new Position(MaPosition.Latitude, MaPosition.Longitude);
+            Map.MoveToRegion(MapSpan.FromCenterAndRadius(positionForm, Distance.FromMiles(1)).WithZoom(20));*/
+
             NouveauCommentaireAuteur = "";
             NouveauCommentaireContenu = "";
-
             NouveauCommentaireCommand = new Command(async () => {
                 await App.restService.NouveauCommentaire(NouveauCommentaireContenu, idLieu);
                 await App.restService.GetPlaceId(idLieu);
                 PlaceItem placeItem2 = Barrel.Current.Get<PlaceItem>("Lieu" + idLieu);
                 ListeCommentaire = placeItem2.Comments;
             });
+
+            //var uriNewYork = new Uri(@"bingmaps:?cp=40.726966~-74.006076");
+
         }
 	}
 }

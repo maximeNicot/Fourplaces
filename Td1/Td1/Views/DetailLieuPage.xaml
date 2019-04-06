@@ -49,7 +49,7 @@
 
             <Entry Text="{Binding NouveauCommentaireContenu}"/>
 
-            <Button Text="Valider commentaire" Command="{Binding NouveauCommentaireCommand}"/>
+            <Button Text="Valider commentaire" Command="{Binding NouveauCommentaireCommand}" Style="{StaticResource buttonStyle}"/>
 
 
         </StackLayout>

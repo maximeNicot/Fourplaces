@@ -12,7 +12,7 @@
                HorizontalOptions="Center"/>
             <Entry Text="{Binding Description}"/>
 
-            <Label Text="Id de l'image du lieu (a faire depuis la galerie/appareil photo)"
+            <Label Text="Id de l'image du lieu"
                HorizontalOptions="Center"/>
             <Entry Text="{Binding IdImage}"/>
 
@@ -26,8 +26,13 @@
 
 
 
-            <Button Text="Ajouter le lieu " Command="{Binding AjouterLieuCommand}"/>
-            <Button Text="Ajouter Une Image " Command="{Binding AjouterImageCommand}"/>
+            <Button Text="Ajouter le lieu " Command="{Binding AjouterLieuCommand}" Style="{StaticResource buttonStyle}"/>
+
+            <Label Text="Chemin de l'image"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding PathImage}"/>
+
+            <Button Text="Ajouter Une Image " Command="{Binding AjouterImageCommand}" Style="{StaticResource buttonStyle}"/>
             
         </StackLayout>
     </ContentPage.Content>

@@ -4,5 +4,14 @@
              x:Class="Td1.App">
     <Application.Resources>
 
+        <ResourceDictionary>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="BorderColor" Value="#3e79d8" />
+                <Setter Property="BorderRadius" Value="5" />
+                <Setter Property="BorderWidth" Value="5" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#4286f4" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

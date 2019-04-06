@@ -1,4 +1,6 @@
-﻿using Storm.Mvvm;
+﻿using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Storm.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,18 @@ namespace Td1.ViewModels
         private string _title;
         private string _description;
         private string _idImage;
+        private string _pathImage;
         private string _latitude;
         private string _longitude;
         public Command AjouterLieuCommand { get; }
         public Command AjouterImageCommand { get; }
+
+
+        public string PathImage
+        {
+            get => _pathImage;
+            set => SetProperty(ref _pathImage, value);
+        }
 
         public string Title
         {
@@ -48,8 +58,48 @@ namespace Td1.ViewModels
             set => SetProperty(ref _longitude, value);
         }
 
+        public async Task<MediaFile> PickImageGallery()
+        {
+            await CrossMedia.Current.Initialize();
+            if (CrossMedia.Current.IsPickPhotoSupported)
+            {
+                MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
+                if(photo != null)
+                {
+                    PathImage = photo.Path;
+                    return photo;
+                }
+            }
+            return null;
+        }
+
+        public async Task<MediaFile> PickImageAppareilPhoto()
+        {
+            if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+            {
+                var mediaOptions = new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                {
+                    Directory = "Receipts",
+                    Name = $"{DateTime.UtcNow}.jpg"
+                };
+
+                var photo = await CrossMedia.Current.TakePhotoAsync(mediaOptions);
+                return photo;
+            }
+            return null;
+        }
+
+        public async void ChoisirImage()
+        {
+            MediaFile file;
+            file = await PickImageGallery();
+            //file = await PickImageAppareilPhoto();
+        }
+
+
         public AjouterLieuViewModel ()
 		{
+            ChoisirImage(); // a mettre ailleurs
 
             AjouterLieuCommand = new Command(async () => {
                 if (await App.restService.NouveauLieu(Title, Description, Int32.Parse(IdImage), Double.Parse(Latitude), Double.Parse(Longitude)))
@@ -64,11 +114,16 @@ namespace Td1.ViewModels
             });
 
             AjouterImageCommand = new Command(async () => {
-               if (await App.restService.NouvelleImage())
+                
+
+                if (await App.restService.NouvelleImage(PathImage))
                 {
                     await Application.Current.MainPage.Navigation.PopAsync();
                 }
-                
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erreur ", "Veuillez donner un path valide pour l'image", "Ok");
+                }
             });
         }
 	}

@@ -21,10 +21,10 @@
                 <TapGestureRecognizer Command="{Binding PasEncoreInscritCommand}" />
             </Label.GestureRecognizers>
         </Label>
-        
-        
-        
-        <Button Text="Connexion" Command="{Binding ConnexionCommand}"/>
+
+
+
+        <Button Text="Connexion" Command="{Binding ConnexionCommand}" Style="{StaticResource buttonStyle}"/>
 
 
 

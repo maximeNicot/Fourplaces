@@ -28,10 +28,9 @@
                HorizontalOptions="Center"/>
             <Entry Text="{Binding LastName}"/>
 
-           
 
-            <Button Text="Editer le profil"
-                Command="{Binding EditerProfilCommand}"/>
+
+            <Button Text="Editer le profil" Command="{Binding EditerProfilCommand}" Style="{StaticResource buttonStyle}"/>
         </StackLayout>
         
     </ContentPage.Content>

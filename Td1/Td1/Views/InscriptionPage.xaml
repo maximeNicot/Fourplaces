@@ -20,10 +20,10 @@
             <Label Text="Mot de passe"
                HorizontalOptions="Center"/>
                 <Entry Text="{Binding Mdp}" IsPassword="True"/>
-                
-               
 
-                <Button Text="Inscription" Command="{Binding EffectuerInscriptionCommand}"/>
+
+
+            <Button Text="Inscription" Command="{Binding EffectuerInscriptionCommand}" Style="{StaticResource buttonStyle}"/>
             </StackLayout>
        
     </ContentPage.Content>

@@ -12,7 +12,7 @@
                HorizontalOptions="Center"/>
             <Entry Text="{Binding LastName}"/>
 
-            <Button Text="Valider les modifications" Command="{Binding ValiderModificationCommand}"/>
+            <Button Text="Valider les modifications" Command="{Binding ValiderModificationCommand}" Style="{StaticResource buttonStyle}"/>
             
         </StackLayout>
     </ContentPage.Content>

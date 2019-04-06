@@ -3,6 +3,7 @@ using MonkeyCache.SQLite;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -354,13 +355,12 @@ namespace Td1.Data
             }
         }
 
-        public async Task<bool> NouvelleImage()
+        public async Task<bool> NouvelleImage(String imagePath)
         {
             try
             {
                 client = new HttpClient();
-                byte[] imageData = await client.GetByteArrayAsync("https://www.valeursactuelles.com/sites/default/files/styles/image_article/public/2018-11/Capture_5.PNG?itok=j08MwU2H.jpg");
-
+                byte[] imageData  = File.ReadAllBytes(imagePath);
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://td-api.julienmialon.com/images");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
 

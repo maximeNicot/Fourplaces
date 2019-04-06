@@ -58,7 +58,7 @@ namespace Td1.ViewModels
                 else
                 {
                     Console.WriteLine("L'enregistrement a echoué");
-                    Email = "Erreur";
+                    await Application.Current.MainPage.DisplayAlert("L'enregistrement a echoué", "", "Ok");
                 }
                     
             });

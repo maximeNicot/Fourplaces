@@ -38,6 +38,10 @@ namespace Td1.ViewModels
                 {
                     await Application.Current.MainPage.Navigation.PopAsync();
                 }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erreur", "", "Ok");
+                }
                 
             });
 

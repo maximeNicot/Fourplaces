@@ -15,7 +15,6 @@ namespace Td1.ViewModels
     public class ProfilViewModel : ViewModelBase
     {
         private string _email;
-        private string _mdp;
         private string _firstName;
         private string _lastName;
         public Command ChangerMotDePasseCommand { get; }
@@ -39,12 +38,7 @@ namespace Td1.ViewModels
             set => SetProperty(ref _lastName, value);
         }
 
-        public string Mdp
-        {
-            get => _mdp;
-            set => SetProperty(ref _mdp, value);
-        }
-
+   
        
 
         public ProfilViewModel()
@@ -53,7 +47,7 @@ namespace Td1.ViewModels
             Email = me.Email;
             FirstName = me.FirstName;
             LastName = me.LastName;
-            Mdp = "";
+     
 
 
             ChangerMotDePasseCommand = new Command(async () => {

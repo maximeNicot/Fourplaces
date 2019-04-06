@@ -20,6 +20,7 @@ namespace Td1.Views
 		{
 			InitializeComponent ();
             BindingContext = new InscriptionViewModel();
+
         }
 	}
 }

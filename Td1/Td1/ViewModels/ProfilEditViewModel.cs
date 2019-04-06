@@ -48,6 +48,10 @@ namespace Td1.ViewModels
                     await App.restService.GetMe();
                     await Application.Current.MainPage.Navigation.PopAsync();
                 }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erreur", "", "Ok");
+                }
                 
             });
         }

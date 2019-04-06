@@ -57,6 +57,10 @@ namespace Td1.ViewModels
                     await App.restService.GetPlaces();
                     await Application.Current.MainPage.Navigation.PopAsync();
                 }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erreur ", "Veuillez remplir les champs correctement", "Ok");
+                }
             });
 
             AjouterImageCommand = new Command(async () => {

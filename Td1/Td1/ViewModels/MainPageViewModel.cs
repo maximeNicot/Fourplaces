@@ -47,10 +47,16 @@ namespace Td1.ViewModels
 
             ConnexionCommand = new Command(async () => {
 
-                
-                await App.restService.Login(Email, Mdp);
-                await App.restService.GetPlaces();
-                await Application.Current.MainPage.Navigation.PushAsync(new ListeLieuxPage());
+
+                if (await App.restService.Login(Email, Mdp))
+                {
+                    await App.restService.GetPlaces();
+                    await Application.Current.MainPage.Navigation.PushAsync(new ListeLieuxPage());
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Mauvais identifiant", "", "Ok");
+                }
                 
             });
         }

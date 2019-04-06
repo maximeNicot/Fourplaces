@@ -14,18 +14,31 @@ namespace Td1.ViewModels
 {
 	public class DetailLieuViewModel : ViewModelBase
     {
+       
         private string _nomLieu;
         private string _descriptionLieu;
         private string _imageLieu;
         private string _nouveauCommentaireAuteur;
         private string _nouveauCommentaireContenu;
         private Map _map;
+        private double _maLatitude;
+        private double _maLongitude;
         private Plugin.Geolocator.Abstractions.Position _maPosition;
 
         public Command NouveauCommentaireCommand { get; }
         private List<CommentItem> _listeCommentaire;
 
 
+        public Double MaLatitude
+        {
+            get => _maLatitude;
+            set => SetProperty(ref _maLatitude, value);
+        }
+        public Double MaLongitude
+        {
+            get => _maLongitude;
+            set => SetProperty(ref _maLongitude, value);
+        }
         public Plugin.Geolocator.Abstractions.Position MaPosition
         {
             get => _maPosition;
@@ -74,11 +87,27 @@ namespace Td1.ViewModels
         }
 
 
-        public async void GetLocation()
+        public async void SetLocation()
         {
-            var locator = CrossGeolocator.Current;
-            MaPosition =  await locator.GetPositionAsync();
-           
+
+            //var locator = CrossGeolocator.Current;
+
+            
+            if (CrossGeolocator.IsSupported && CrossGeolocator.Current.IsGeolocationEnabled && CrossGeolocator.Current.IsGeolocationAvailable)
+            {
+                var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 50;
+                var position = await locator.GetPositionAsync();
+                MaLatitude = position.Latitude;
+                MaLongitude = position.Longitude;
+                Console.WriteLine("Latitude est " + MaLatitude + " Longitude est " + MaLongitude);
+                Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(MaLatitude, MaLongitude), Distance.FromMiles(1)).WithZoom(20));
+            }
+            else
+            {
+              
+            }
+            
         }
        
 
@@ -101,11 +130,13 @@ namespace Td1.ViewModels
                 Position = positionLieu,
                 Label = placeItem.Title
             };
-            
             Map.Pins.Add(pin);
-            /*GetLocation();
-            Position positionForm = new Position(MaPosition.Latitude, MaPosition.Longitude);
-            Map.MoveToRegion(MapSpan.FromCenterAndRadius(positionForm, Distance.FromMiles(1)).WithZoom(20));*/
+
+
+
+
+            SetLocation();
+         
 
             NouveauCommentaireAuteur = "";
             NouveauCommentaireContenu = "";

@@ -5,32 +5,34 @@
 
 
 
-    <ContentView  Content="{Binding Map}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+    <!--<ContentView  Content="{Binding Map}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" /> -->
 
 
     <ContentPage.Content>
-
-        <StackLayout >
-
-
+        <StackLayout>
+            <ScrollView HeightRequest="400">
+            <StackLayout  >
+            
             <Label Text="{Binding NomLieu}"
+               FontAttributes="Bold"
                HorizontalOptions="Center"/>
 
             <Label Text="{Binding DescriptionLieu}"
                HorizontalOptions="Center"/>
 
             <Image Source="{Binding ImageLieu}"
-                    HeightRequest="200"
-                    WidthRequest="200"/>
-
-
-
-            <!-- <ContentView  Content="{Binding Map}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />-->
-          
+                    HeightRequest="100"
+                    WidthRequest="100"/>
 
             
-            <Label Text="Liste des commentaires " FontSize="15"/>
-            <ListView ItemsSource="{Binding ListeCommentaire}">
+           
+
+        </StackLayout>
+            
+        </ScrollView>
+            <ContentView  Content="{Binding Map}"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="400" />
+            <Label Text="Liste des commentaires "  FontAttributes="Bold"/>
+            <ListView ItemsSource="{Binding ListeCommentaire}" HeightRequest="400">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -45,14 +47,17 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Label Text="Ecrire un commentaire : "/>
+
+
+            <Label Text="Ecrire un commentaire : " FontAttributes="Bold" FontSize="15"/>
 
             <Entry Text="{Binding NouveauCommentaireContenu}"/>
 
             <Button Text="Valider commentaire" Command="{Binding NouveauCommentaireCommand}" Style="{StaticResource buttonStyle}"/>
-
-
         </StackLayout>
+        
     </ContentPage.Content>
+    
 
+    
 </ContentPage>

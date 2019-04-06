@@ -6,12 +6,20 @@
 
         <StackLayout>
 
-            <Label Text="Email"
-               HorizontalOptions="Center"/>
-            <Entry Text="{Binding Email}"/>
+            <Label Text="Email : " FontAttributes="Bold" FontSize="17"
+             />
+            <Label Text="{Binding Email}" FontSize="16"/>
 
-     
-            
+            <Label Text="First name : " FontAttributes="Bold" FontSize="17"
+              />
+            <Label Text="{Binding FirstName}" FontSize="16"/>
+
+            <Label Text="Last name : " FontAttributes="Bold" FontSize="17"
+               />
+            <Label Text="{Binding LastName}" FontSize="16"/>
+
+
+
             <Label HorizontalOptions="Center"
                TextColor="Blue"
                Text="Modifier le mot de passe">
@@ -20,16 +28,6 @@
                 </Label.GestureRecognizers>
             </Label>
             
-            <Label Text="First name"
-               HorizontalOptions="Center"/>
-            <Entry Text="{Binding FirstName}"/>
-
-            <Label Text="Last name"
-               HorizontalOptions="Center"/>
-            <Entry Text="{Binding LastName}"/>
-
-
-
             <Button Text="Editer le profil" Command="{Binding EditerProfilCommand}" Style="{StaticResource buttonStyle}"/>
         </StackLayout>
         

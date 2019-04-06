@@ -45,7 +45,6 @@ namespace Td1.ViewModels
             ValiderModificationCommand = new Command(async () => {
                 if (await App.restService.ModificationUser(FirstName, LastName, ImageId))
                 {
-                    await App.restService.GetMe();
                     await Application.Current.MainPage.Navigation.PopAsync();
                 }
                 else

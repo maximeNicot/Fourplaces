@@ -48,7 +48,7 @@ namespace Td1.ViewModels
 
 
 
-        public async void OnCliqueItem(int idLieu)
+         public async void OnCliqueItem(int idLieu)
         {
             await App.restService.GetPlaceId(idLieu);
             await Application.Current.MainPage.Navigation.PushAsync(new DetailLieuPage(idLieu));

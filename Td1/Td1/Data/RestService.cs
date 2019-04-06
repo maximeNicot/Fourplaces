@@ -14,10 +14,7 @@ namespace Td1.Data
 {
     public class RestService
     {
-      
-
         HttpClient client;
-
 
         public RestService()
         {
@@ -147,13 +144,13 @@ namespace Td1.Data
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine("Patch API worked");
+                    Console.WriteLine("Patch User API worked");
                     await GetMe();
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("Patch API RATEE" + " " + response.StatusCode +"  " + response.RequestMessage  + "  " + response.ReasonPhrase);
+                    Console.WriteLine("Patch User API RATEE" + " " + response.StatusCode +"  " + response.RequestMessage  + "  " + response.ReasonPhrase);
                     return false;
                 }
             }
@@ -215,7 +212,7 @@ namespace Td1.Data
                 {
                     var res = await response.Content.ReadAsStringAsync();
                     Response<UserItem> jsonRes = JsonConvert.DeserializeObject<Response<UserItem>>(res);
-                    Barrel.Current.Add("Me",jsonRes.Data, TimeSpan.FromDays(1));
+                    Barrel.Current.Add("Me", jsonRes.Data, TimeSpan.FromDays(1));
                     Console.WriteLine("Get API worked" + jsonRes.Data.FirstName );
                     return true;
                 }

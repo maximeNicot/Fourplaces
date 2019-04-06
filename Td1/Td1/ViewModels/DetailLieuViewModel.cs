@@ -87,7 +87,7 @@ namespace Td1.ViewModels
         }
 
 
-        public async void SetLocation()
+        public async void GetLocation()
         {
 
             //var locator = CrossGeolocator.Current;
@@ -105,9 +105,11 @@ namespace Td1.ViewModels
             }
             else
             {
-              
+                MaLatitude = 48.8763;
+                MaLongitude = 2.3183;
+                Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(MaLatitude, MaLongitude), Distance.FromMiles(1)).WithZoom(20));
+                Console.WriteLine("Latitude est " + MaLatitude + " Longitude est " + MaLongitude);
             }
-            
         }
        
 
@@ -132,10 +134,7 @@ namespace Td1.ViewModels
             };
             Map.Pins.Add(pin);
 
-
-
-
-            SetLocation();
+            GetLocation();
          
 
             NouveauCommentaireAuteur = "";

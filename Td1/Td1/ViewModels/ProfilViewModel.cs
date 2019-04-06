@@ -47,7 +47,7 @@ namespace Td1.ViewModels
             Email = me.Email;
             FirstName = me.FirstName;
             LastName = me.LastName;
-     
+           
 
 
             ChangerMotDePasseCommand = new Command(async () => {

@@ -32,6 +32,8 @@
                HorizontalOptions="Center"/>
             <Entry Text="{Binding PathImage}"/>
 
+            <Button Text="Choisir Une Image " Command="{Binding ChoisirImageCommand}" Style="{StaticResource buttonStyle}"/>
+            
             <Button Text="Ajouter Une Image " Command="{Binding AjouterImageCommand}" Style="{StaticResource buttonStyle}"/>
             
         </StackLayout>

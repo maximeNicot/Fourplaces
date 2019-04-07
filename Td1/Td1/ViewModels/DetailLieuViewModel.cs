@@ -89,10 +89,6 @@ namespace Td1.ViewModels
 
         public async void GetLocation()
         {
-
-            //var locator = CrossGeolocator.Current;
-
-            
             if (CrossGeolocator.IsSupported && CrossGeolocator.Current.IsGeolocationEnabled && CrossGeolocator.Current.IsGeolocationAvailable)
             {
                 var locator = CrossGeolocator.Current;

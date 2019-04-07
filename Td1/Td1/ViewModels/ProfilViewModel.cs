@@ -43,10 +43,14 @@ namespace Td1.ViewModels
 
         public ProfilViewModel()
         {
-            UserItem me = Barrel.Current.Get<UserItem>("Me");
+            UserItem me;
+          
+            me = Barrel.Current.Get<UserItem>("Me");
             Email = me.Email;
             FirstName = me.FirstName;
             LastName = me.LastName;
+            
+           
            
 
 

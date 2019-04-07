@@ -58,11 +58,6 @@ namespace Td1.Data
 
         public async Task<bool> Login(string mail, string mdp)
         {
-            /*if (!Barrel.Current.IsExpired("Login"))
-            {
-                Console.WriteLine("Barrel Login ");
-                return true;
-            }*/
             try
             {
                 client = new HttpClient();
@@ -144,13 +139,27 @@ namespace Td1.Data
 
                 if (response.IsSuccessStatusCode)
                 {
+
+                    Console.WriteLine("TESTE updateProfileRequest = " + updateProfileRequest.FirstName +" " + updateProfileRequest.LastName + updateProfileRequest.ImageId);
                     Console.WriteLine("Patch User API worked");
                     await GetMe();
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("Patch User API RATEE" + " " + response.StatusCode +"  " + response.RequestMessage  + "  " + response.ReasonPhrase);
+                    if (await Refresh())
+                    {
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
+                        response = await client.SendAsync(requestMessage);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
                     return false;
                 }
             }
@@ -185,7 +194,18 @@ namespace Td1.Data
                 }
                 else
                 {
-                    Console.WriteLine("Mdp pas changé" + " " + response.StatusCode + "  " + response.RequestMessage + "  " + response.ReasonPhrase);
+                    if (await Refresh())
+                    {
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
+                        response = await client.SendAsync(requestMessage);
+                        if (response.IsSuccessStatusCode){
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
                     return false;
                 }
             }
@@ -213,12 +233,25 @@ namespace Td1.Data
                     var res = await response.Content.ReadAsStringAsync();
                     Response<UserItem> jsonRes = JsonConvert.DeserializeObject<Response<UserItem>>(res);
                     Barrel.Current.Add("Me", jsonRes.Data, TimeSpan.FromDays(1));
-                    Console.WriteLine("Get API worked" + jsonRes.Data.FirstName );
+
+                    Console.WriteLine("Get API worked Firstname = " + jsonRes.Data.FirstName  + "Lastname = " + jsonRes.Data.LastName);
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("Get API RATEE" + " " + response.StatusCode + "  " + response.RequestMessage + "  " + response.ReasonPhrase);
+                    if (await Refresh())
+                    {
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
+                        response = await client.GetAsync(uri);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
                     return false;
                 }
             }
@@ -229,6 +262,7 @@ namespace Td1.Data
             }
         }
 
+    
 
         public async Task<bool> GetPlaces()
         {
@@ -311,7 +345,19 @@ namespace Td1.Data
                 }
                 else
                 {
-                    Console.WriteLine("Post commentaire RATEE" + " " + response.StatusCode + "  " + response.RequestMessage + "  " + response.ReasonPhrase);
+                    if (await Refresh())
+                    {
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
+                        response = await client.PostAsync(uri, contentRequest);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
                     return false;
                 }
             }
@@ -341,7 +387,19 @@ namespace Td1.Data
                 }
                 else
                 {
-                    Console.WriteLine("Post Lieu RATEE" + " " + response.StatusCode + "  " + response.RequestMessage + "  " + response.ReasonPhrase);
+                    if (await Refresh())
+                    {
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
+                        response = await client.PostAsync(uri, contentRequest);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
                     return false;
                 }
             }
@@ -382,7 +440,19 @@ namespace Td1.Data
                 }
                 else
                 {
-                    Console.WriteLine("Image not uploaded");
+                    if (await Refresh())
+                    {
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
+                        response = await client.SendAsync(request);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
                     return false;
                 }
             }
@@ -392,38 +462,5 @@ namespace Td1.Data
                 return false;
             }
         }
-
-        /*public async Task<bool> GetImages(int idImage)
-        {
-            try
-            {
-                client = new HttpClient();
-
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Barrel.Current.Get<LoginResult>("Login").AccessToken);
-
-                var uri = new Uri(string.Format("https://td-api.julienmialon.com/images/" + idImage, string.Empty));
-                var response = await client.GetAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var res = await response.Content.ReadAsStringAsync();
-                    Response<ImageItem> jsonRes = JsonConvert.DeserializeObject<Response<ImageItem>>(res);
-                    Barrel.Current.Add("Image" + idImage, jsonRes.Data, TimeSpan.FromDays(1));
-                    Console.WriteLine("Get Image REUSSI");
-                    return true;
-                }
-                else
-                {
-                    Console.WriteLine("Get Image RATEE" + " " + response.StatusCode + "  " + response.RequestMessage + "  " + response.ReasonPhrase);
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(@"		ERROR {0}", e.Message);
-                return false;
-            }
-        }*/
-
     }
 }

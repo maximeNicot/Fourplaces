@@ -20,6 +20,7 @@ namespace Td1.ViewModels
         private string _longitude;
         public Command AjouterLieuCommand { get; }
         public Command AjouterImageCommand { get; }
+        public Command ChoisirImageCommand { get; }
 
 
         public string PathImage
@@ -99,8 +100,6 @@ namespace Td1.ViewModels
 
         public AjouterLieuViewModel ()
 		{
-            ChoisirImage(); // a mettre ailleurs
-
             AjouterLieuCommand = new Command(async () => {
                 if (await App.restService.NouveauLieu(Title, Description, Int32.Parse(IdImage), Double.Parse(Latitude), Double.Parse(Longitude)))
                 {
@@ -114,8 +113,6 @@ namespace Td1.ViewModels
             });
 
             AjouterImageCommand = new Command(async () => {
-                
-
                 if (await App.restService.NouvelleImage(PathImage))
                 {
                     await Application.Current.MainPage.Navigation.PopAsync();
@@ -124,6 +121,10 @@ namespace Td1.ViewModels
                 {
                     await Application.Current.MainPage.DisplayAlert("Erreur ", "Veuillez donner un path valide pour l'image", "Ok");
                 }
+            });
+
+            ChoisirImageCommand = new Command(async () => {
+                ChoisirImage(); 
             });
         }
 	}

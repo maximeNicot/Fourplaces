@@ -37,14 +37,12 @@ namespace Td1.ViewModels
 
         public ProfilEditViewModel ()
 		{
-            
-            FirstName = "";
-            LastName = "";
-            ImageId = 0;
+
 
             ValiderModificationCommand = new Command(async () => {
                 if (await App.restService.ModificationUser(FirstName, LastName, ImageId))
                 {
+                    Console.WriteLine("TESTE FIRSTNAME = " + FirstName + " LASTNAME = " + LastName + " IMAGEID = " + ImageId);
                     await Application.Current.MainPage.Navigation.PopAsync();
                 }
                 else

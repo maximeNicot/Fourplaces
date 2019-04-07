@@ -74,6 +74,8 @@ namespace Td1.ViewModels
                 await Application.Current.MainPage.Navigation.PushAsync(new ProfilPage());
             });
         }
+
+       
     }
 
 

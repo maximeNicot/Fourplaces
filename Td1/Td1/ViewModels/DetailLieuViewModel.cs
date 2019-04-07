@@ -89,23 +89,30 @@ namespace Td1.ViewModels
 
         public async void GetLocation()
         {
-            if (CrossGeolocator.IsSupported && CrossGeolocator.Current.IsGeolocationEnabled && CrossGeolocator.Current.IsGeolocationAvailable)
-            {
+            // permet de demander les droits
+            //if (CrossGeolocator.IsSupported && CrossGeolocator.Current.IsGeolocationEnabled && CrossGeolocator.Current.IsGeolocationAvailable)
+            //{
+
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;
-                var position = await locator.GetPositionAsync();
-                MaLatitude = position.Latitude;
-                MaLongitude = position.Longitude;
-                Console.WriteLine("Latitude est " + MaLatitude + " Longitude est " + MaLongitude);
-                Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(MaLatitude, MaLongitude), Distance.FromMiles(1)).WithZoom(20));
-            }
-            else
-            {
-                MaLatitude = 48.8763;
-                MaLongitude = 2.3183;
-                Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(MaLatitude, MaLongitude), Distance.FromMiles(1)).WithZoom(20));
-                Console.WriteLine("Latitude est " + MaLatitude + " Longitude est " + MaLongitude);
-            }
+                var position = await locator.GetLastKnownLocationAsync();
+               //Barrel.Current.Add("Localisation", position, TimeSpan.FromDays(1));
+                if (position != null)
+                {
+                    MaLatitude = position.Latitude;
+                    MaLongitude = position.Longitude;
+                    Console.WriteLine("LastKnow exist " + "Latitude est " + MaLatitude + " Longitude est " + MaLongitude);
+                    Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(MaLatitude, MaLongitude), Distance.FromMiles(1)).WithZoom(20));
+                }
+                else
+                {
+                    position = await locator.GetPositionAsync();
+                    MaLatitude = position.Latitude;
+                    MaLongitude = position.Longitude;
+                    Console.WriteLine("Pas de  " + "Latitude est " + MaLatitude + " Longitude est " + MaLongitude);
+                    Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(MaLatitude, MaLongitude), Distance.FromMiles(1)).WithZoom(20));
+                }
+           // }
         }
        
 
@@ -136,6 +143,7 @@ namespace Td1.ViewModels
             NouveauCommentaireAuteur = "";
             NouveauCommentaireContenu = "";
             NouveauCommentaireCommand = new Command(async () => {
+                GetLocation();
                 await App.restService.NouveauCommentaire(NouveauCommentaireContenu, idLieu);
                 await App.restService.GetPlaceId(idLieu);
                 PlaceItem placeItem2 = Barrel.Current.Get<PlaceItem>("Lieu" + idLieu);

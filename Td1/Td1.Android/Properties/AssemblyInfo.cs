@@ -32,6 +32,12 @@ using Android.App;
 [assembly: UsesFeature("android.hardware.camera", Required = false)]
 [assembly: UsesFeature("android.hardware.camera.autofocus", Required = false)]
 
+[assembly: UsesPermission(Android.Manifest.Permission.AccessCoarseLocation)]
+[assembly: UsesPermission(Android.Manifest.Permission.AccessFineLocation)]
+[assembly: UsesFeature("android.hardware.location", Required = false)]
+[assembly: UsesFeature("android.hardware.location.gps", Required = false)]
+[assembly: UsesFeature("android.hardware.location.network", Required = false)]
+
 // Add some common permissions, these can be removed if not needed
 [assembly: UsesPermission(Android.Manifest.Permission.Internet)]
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Td1.Views;
 using Xamarin.Forms;
 
 namespace Td1.ViewModels
@@ -119,6 +120,9 @@ namespace Td1.ViewModels
                     await App.restService.GetPlaces();
                    
                     await Application.Current.MainPage.Navigation.PopAsync();
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                    await Application.Current.MainPage.Navigation.PushAsync(new ListeLieuxPage());
+
                 }
                 else
                 {

@@ -15,10 +15,8 @@ namespace Td1.Views
 		public ListeLieuxPage ()
 		{
 			InitializeComponent ();
-            BindingContext = new ListeLieuxViewModel();
-
-             
+            BindingContext = new ListeLieuxViewModel();    
 		}
-       
+
     }
 }

@@ -21,6 +21,7 @@ namespace Td1.ViewModels
         public Command AjouterLieuCommand { get; }
         public Command AjouterImageCommand { get; }
         public Command ChoisirImageCommand { get; }
+        public Command ChoisirImagePhotoCommand { get; }
 
 
         public string PathImage
@@ -76,6 +77,7 @@ namespace Td1.ViewModels
 
         public async Task<MediaFile> PickImageAppareilPhoto()
         {
+            await CrossMedia.Current.Initialize();
             if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
             {
                 var mediaOptions = new Plugin.Media.Abstractions.StoreCameraMediaOptions
@@ -85,6 +87,7 @@ namespace Td1.ViewModels
                 };
 
                 var photo = await CrossMedia.Current.TakePhotoAsync(mediaOptions);
+                PathImage = photo.Path;
                 return photo;
             }
             return null;
@@ -96,7 +99,11 @@ namespace Td1.ViewModels
             file = await PickImageGallery();
             //file = await PickImageAppareilPhoto();
         }
-
+        public async void ChoisirImagePhoto()
+        {
+            MediaFile file;
+            file = await PickImageAppareilPhoto();
+        }
 
         public AjouterLieuViewModel ()
 		{
@@ -104,6 +111,7 @@ namespace Td1.ViewModels
                 if (await App.restService.NouveauLieu(Title, Description, Int32.Parse(IdImage), Double.Parse(Latitude), Double.Parse(Longitude)))
                 {
                     await App.restService.GetPlaces();
+                   
                     await Application.Current.MainPage.Navigation.PopAsync();
                 }
                 else
@@ -123,8 +131,12 @@ namespace Td1.ViewModels
                 }
             });
 
-            ChoisirImageCommand = new Command(async () => {
+            ChoisirImageCommand = new Command( () => {
                 ChoisirImage(); 
+            });
+
+            ChoisirImagePhotoCommand = new Command( () => {
+                ChoisirImagePhoto();
             });
         }
 	}

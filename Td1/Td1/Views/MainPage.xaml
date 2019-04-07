@@ -5,7 +5,6 @@
              x:Class="Td1.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
 
         <Label Text="Email "
                HorizontalOptions="Center"/>

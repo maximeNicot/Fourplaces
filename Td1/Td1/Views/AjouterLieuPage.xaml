@@ -3,39 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Td1.Views.AjouterLieuPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Nom du lieu"
-               HorizontalOptions="Center"/>
-            <Entry Text="{Binding Title}"/>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Nom du lieu"
+                   HorizontalOptions="Center"/>
+                <Entry Text="{Binding Title}"/>
 
-            <Label Text="Description du lieu"
-               HorizontalOptions="Center"/>
-            <Entry Text="{Binding Description}"/>
+                <Label Text="Description du lieu"
+                   HorizontalOptions="Center"/>
+                <Entry Text="{Binding Description}"/>
 
-            <Label Text="Id de l'image du lieu"
-               HorizontalOptions="Center"/>
-            <Entry Text="{Binding IdImage}"/>
+                <Label Text="Id de l'image du lieu"
+                   HorizontalOptions="Center"/>
+                <Entry Text="{Binding IdImage}"/>
 
-            <Label Text="Latitude"
-               HorizontalOptions="Center"/>
-            <Entry Text="{Binding Latitude}"/>
+                <Label Text="Latitude"
+                   HorizontalOptions="Center"/>
+                <Entry Text="{Binding Latitude}"/>
 
-            <Label Text="Longitude"
-               HorizontalOptions="Center"/>
-            <Entry Text="{Binding Longitude}"/>
+                <Label Text="Longitude"
+                   HorizontalOptions="Center"/>
+                <Entry Text="{Binding Longitude}"/>
 
 
 
-            <Button Text="Ajouter le lieu " Command="{Binding AjouterLieuCommand}" Style="{StaticResource buttonStyle}"/>
+                <Button Text="Ajouter le lieu " Command="{Binding AjouterLieuCommand}" Style="{StaticResource buttonStyle}"/>
 
-            <Label Text="Chemin de l'image"
-               HorizontalOptions="Center"/>
-            <Entry Text="{Binding PathImage}"/>
+                <Label Text="Chemin de l'image"
+                   HorizontalOptions="Center"/>
+                <Entry Text="{Binding PathImage}"/>
 
-            <Button Text="Choisir Une Image " Command="{Binding ChoisirImageCommand}" Style="{StaticResource buttonStyle}"/>
+                <Button Text="Choisir une image depuis la gallery " Command="{Binding ChoisirImageCommand}" Style="{StaticResource buttonStyle}"/>
+                <Button Text="Prendre une image avec l'appareil photo " Command="{Binding ChoisirImagePhotoCommand}" Style="{StaticResource buttonStyle}"/>
+         
+                <Button Text="Ajouter Une Image " Command="{Binding AjouterImageCommand}" Style="{StaticResource buttonStyle}"/>
             
-            <Button Text="Ajouter Une Image " Command="{Binding AjouterImageCommand}" Style="{StaticResource buttonStyle}"/>
-            
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

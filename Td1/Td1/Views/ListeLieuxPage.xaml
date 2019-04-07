@@ -4,9 +4,6 @@
              x:Class="Td1.Views.ListeLieuxPage">
     <ContentPage.Content>
         <StackLayout>
-          
-
-
             <ListView ItemsSource="{Binding ListeLieux}" SelectedItem="{Binding SelectedLieu}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

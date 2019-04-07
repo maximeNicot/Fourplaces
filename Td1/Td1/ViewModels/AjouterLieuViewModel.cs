@@ -65,9 +65,14 @@ namespace Td1.ViewModels
             await CrossMedia.Current.Initialize();
             if (CrossMedia.Current.IsPickPhotoSupported)
             {
-                MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
-                if(photo != null)
+                MediaFile photo = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
                 {
+                    PhotoSize = PhotoSize.Small,
+                });
+
+                if (photo != null)
+                {
+                  
                     PathImage = photo.Path;
                     return photo;
                 }
@@ -83,7 +88,8 @@ namespace Td1.ViewModels
                 var mediaOptions = new Plugin.Media.Abstractions.StoreCameraMediaOptions
                 {
                     Directory = "Receipts",
-                    Name = $"{DateTime.UtcNow}.jpg"
+                    Name = $"{DateTime.UtcNow}.jpg",
+                    PhotoSize = PhotoSize.Small
                 };
 
                 var photo = await CrossMedia.Current.TakePhotoAsync(mediaOptions);

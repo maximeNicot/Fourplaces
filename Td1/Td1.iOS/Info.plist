@@ -2,37 +2,84 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>UIDeviceFamily</key>
-    <array>
-        <integer>1</integer>
-        <integer>2</integer>
-    </array>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationPortraitUpsideDown</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>MinimumOSVersion</key>
-    <string>8.0</string>
-    <key>CFBundleDisplayName</key>
-    <string>Td1</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.companyname.Td1</string>
-    <key>CFBundleVersion</key>
-    <string>1.0</string>
-    <key>UILaunchStoryboardName</key>
-    <string>LaunchScreen</string>
-    <key>CFBundleName</key>
-    <string>Td1</string>
-    <key>XSAppIconAssets</key>
-    <string>Assets.xcassets/AppIcon.appiconset</string>
+  <!-- Geolocator-->
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>
+    Cette application a besoin d'accéder à l'emplacement lorsqu'elle est ouverte.
+  </string>
+
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>
+    Cette application a besoin d'accéder à l'emplacement lorsque vous êtes en arrière-plan.
+  </string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>
+    Cette application a besoin d'accéder à l'emplacement lorsqu'elle est ouverte et en arrière-plan.
+  </string>
+  
+  <!-- Media file-->
+  <key>NSMicrophoneUsageDescription</key>
+  <string>This app needs access to microphone.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>
+    Cette application nécessite un accès à l'appareil photo pour prendre des photos.
+  </string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>
+    Cette application nécessite un accès aux photos.
+  </string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>
+    Cette application nécessite un accès à la galerie de photos.
+  </string>
+  
+  <!-- Map-->
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>Pouvons-nous utiliser votre position à tout moment?</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>
+    Pouvons-nous utiliser votre emplacement lorsque votre application est utilisée?
+  </string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>Pouvons-nous utiliser votre position à tout moment?</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>MinimumOSVersion</key>
+	<string>8.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>Td1</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.companyname.Td1</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>CFBundleName</key>
+	<string>Td1</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Type de document 1</string>
+		</dict>
+	</array>
 </dict>
 </plist>

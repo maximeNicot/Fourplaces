@@ -54,14 +54,17 @@ namespace Td1.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new DetailLieuPage(idLieu));
         }
 
+
         public ListeLieuxViewModel()
         {
             ListeLieux = new List<PlaceItemSummary>{ };
             ListeLieux = Barrel.Current.Get<List<PlaceItemSummary>>("ListeLieux");
 
+            
              foreach (PlaceItemSummary placeItemSummary in ListeLieux)
              {
                 placeItemSummary.ImageUrl = "https://td-api.julienmialon.com/images/" + placeItemSummary.ImageId;
+                //ListeLieux.OrderBy<double,PlaceItemSummary.>
              }
            
             AjouterUnLieuCommand = new Command(async () => {

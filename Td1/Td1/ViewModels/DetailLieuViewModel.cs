@@ -96,7 +96,6 @@ namespace Td1.ViewModels
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;
                 var position = await locator.GetLastKnownLocationAsync();
-               //Barrel.Current.Add("Localisation", position, TimeSpan.FromDays(1));
                 if (position != null)
                 {
                     MaLatitude = position.Latitude;
@@ -125,8 +124,6 @@ namespace Td1.ViewModels
             ImageLieu = "https://td-api.julienmialon.com/images/" + placeItem.ImageId;
             ListeCommentaire = placeItem.Comments;
 
-            
-           
 
             Map = new Map();
             Position positionLieu = new Position(placeItem.Latitude, placeItem.Longitude);

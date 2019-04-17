@@ -1,4 +1,6 @@
 ﻿using MonkeyCache.SQLite;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 using Storm.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,21 @@ namespace Td1.ViewModels
         private PlaceItemSummary _selectedLieu;
         public Command ProfilPageCommand { get; }
         public Command AjouterUnLieuCommand { get; }
-        
+        private double _maLatitude;
+        private double _maLongitude;
+
+
+
+        public double MaLatitude
+        {
+            get => _maLatitude;
+            set => SetProperty(ref _maLatitude, value);
+        }
+        public double MaLongitude
+        {
+            get => _maLongitude;
+            set => SetProperty(ref _maLongitude, value);
+        }
         public PlaceItemSummary SelectedLieu
         {
             get => _selectedLieu;
@@ -54,19 +70,48 @@ namespace Td1.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new DetailLieuPage(idLieu));
         }
 
+        public async void GetLocation()
+        {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 50;
+            var position = await locator.GetLastKnownLocationAsync();
+            if (position != null)
+            {
+                MaLatitude = position.Latitude;
+                MaLongitude = position.Longitude;
+            }
+            else
+            {
+                position = await locator.GetPositionAsync();
+                MaLatitude = position.Latitude;
+                MaLongitude = position.Longitude;
+            }
+        }
+
 
         public ListeLieuxViewModel()
         {
+            GetLocation();
+           
             ListeLieux = new List<PlaceItemSummary>{ };
             ListeLieux = Barrel.Current.Get<List<PlaceItemSummary>>("ListeLieux");
 
-            
-             foreach (PlaceItemSummary placeItemSummary in ListeLieux)
-             {
+            //double distance;
+            //Position maPos = new Position(MaLatitude,MaLongitude);
+
+            foreach (PlaceItemSummary placeItemSummary in ListeLieux)
+            {
+
+                //distance = maPos.CalculateDistance(new Position(placeItemSummary.Latitude, placeItemSummary.Longitude));
+
+
                 placeItemSummary.ImageUrl = "https://td-api.julienmialon.com/images/" + placeItemSummary.ImageId;
-                //ListeLieux.OrderBy<double,PlaceItemSummary.>
-             }
-           
+               
+            }
+
+            //ListeLieux.Sort();
+
+
             AjouterUnLieuCommand = new Command(async () => {
 
                 await Application.Current.MainPage.Navigation.PushAsync(new AjouterLieuPage());

@@ -2,20 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <!-- Geolocator-->
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>
-    Cette application a besoin d'accéder à l'emplacement lorsqu'elle est ouverte.
-  </string>
-
-  <key>NSLocationAlwaysUsageDescription</key>
-  <string>
-    Cette application a besoin d'accéder à l'emplacement lorsque vous êtes en arrière-plan.
-  </string>
-  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>
-    Cette application a besoin d'accéder à l'emplacement lorsqu'elle est ouverte et en arrière-plan.
-  </string>
+ 
   
   <!-- Media file-->
   <key>NSMicrophoneUsageDescription</key>
@@ -34,6 +21,7 @@
   </string>
   
   <!-- Map-->
+  <!-- Geolocator-->
   <key>NSLocationAlwaysUsageDescription</key>
   <string>Pouvons-nous utiliser votre position à tout moment?</string>
   <key>NSLocationWhenInUseUsageDescription</key>

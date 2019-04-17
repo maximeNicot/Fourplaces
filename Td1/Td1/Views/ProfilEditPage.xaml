@@ -12,6 +12,10 @@
                HorizontalOptions="Center"/>
             <Entry Text="{Binding LastName}"/>
 
+            <Label Text="Image ID"
+               HorizontalOptions="Center"/>
+            <Entry Text="{Binding ImageId}"/>
+            
             <Button Text="Valider les modifications" Command="{Binding ValiderModificationCommand}" Style="{StaticResource buttonStyle}"/>
             
         </StackLayout>

@@ -17,8 +17,16 @@ namespace Td1.ViewModels
         private string _email;
         private string _firstName;
         private string _lastName;
+        private int? _imageProfil;
         public Command ChangerMotDePasseCommand { get; }
         public Command EditerProfilCommand { get; }
+
+
+        public int? ImageProfil
+        {
+            get => _imageProfil;
+            set => SetProperty(ref _imageProfil, value);
+        }
 
         public string FirstName
         {
@@ -49,7 +57,7 @@ namespace Td1.ViewModels
             Email = me.Email;
             FirstName = me.FirstName;
             LastName = me.LastName;
-            
+            ImageProfil = me.ImageId;
            
            
 
